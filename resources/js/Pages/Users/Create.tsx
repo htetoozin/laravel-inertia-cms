@@ -1,6 +1,6 @@
 import { Link, useForm } from '@inertiajs/react';
 import MainLayout from '@/Layouts/MainLayout';
-import LoadingButton from '@/Components/Button/LoadingButton';
+import SubmitButton from '@/Components/Button/SubmitButton';
 import TextInput from '@/Components/Form/TextInput';
 import SelectInput from '@/Components/Form/SelectInput';
 import FileInput from '@/Components/Form/FileInput';
@@ -111,13 +111,13 @@ const Create = () => {
             </FieldGroup>
           </div>
           <div className="flex items-center justify-end px-8 py-4 bg-gray-100 border-t border-gray-200">
-            <LoadingButton
+            <SubmitButton
               loading={processing}
               type="submit"
               className="btn-indigo"
             >
               Create User
-            </LoadingButton>
+            </SubmitButton>
           </div>
         </form>
       </div>

@@ -3,7 +3,7 @@ import { Head } from '@inertiajs/react';
 import { Link, usePage, useForm, router } from '@inertiajs/react';
 import MainLayout from '@/Layouts/MainLayout';
 import DeleteButton from '@/Components/Button/DeleteButton';
-import LoadingButton from '@/Components/Button/LoadingButton';
+import SubmitButton from '@/Components/Button/SubmitButton';
 import TextInput from '@/Components/Form/TextInput';
 import SelectInput from '@/Components/Form/SelectInput';
 import TrashedMessage from '@/Components/Messages/TrashedMessage';
@@ -164,13 +164,13 @@ const Edit = () => {
                 Delete Organization
               </DeleteButton>
             )}
-            <LoadingButton
+            <SubmitButton
               loading={processing}
               type="submit"
               className="ml-auto btn-indigo"
             >
               Update Organization
-            </LoadingButton>
+            </SubmitButton>
           </div>
         </form>
       </div>

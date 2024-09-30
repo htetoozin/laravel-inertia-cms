@@ -2,7 +2,7 @@ import React from 'react';
 import { Head } from '@inertiajs/react';
 import { useForm } from '@inertiajs/react';
 import Logo from '@/Components/Logo/Logo';
-import LoadingButton from '@/Components/Button/LoadingButton';
+import SubmitButton from '@/Components/Button/SubmitButton';
 import TextInput from '@/Components/Form/TextInput';
 import FieldGroup from '@/Components/Form/FieldGroup';
 import { CheckboxInput } from '@/Components/Form/CheckboxInput';
@@ -81,13 +81,12 @@ export default function LoginPage() {
           </div>
 
           <div className="flex items-center justify-center px-10 py-4 bg-gray-100 border-t border-gray-200 w-full">
-            <LoadingButton
+            <SubmitButton
+              name="Sign In"
               type="submit"
               loading={processing}
               className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded shadow-md shadow-purple-600/50 w-full justify-center"
-            >
-              Sign In
-            </LoadingButton>
+            />
           </div>
         </form>
       </div>

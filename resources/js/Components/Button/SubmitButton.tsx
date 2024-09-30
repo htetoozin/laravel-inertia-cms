@@ -1,16 +1,17 @@
 import cx from 'classnames';
 
-interface LoadingButtonProps
+interface SubmitButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   loading: boolean;
 }
 
-export default function LoadingButton({
+export default function SubmitButton({
+  name,
   loading,
   className,
   children,
   ...props
-}: LoadingButtonProps) {
+}: SubmitButtonProps) {
   const classNames = cx(
     'flex items-center',
     'focus:outline-none',
@@ -22,7 +23,7 @@ export default function LoadingButton({
   return (
     <button disabled={loading} className={classNames} {...props}>
       {loading && <div className="mr-2 btn-spinner" />}
-      {children}
+      {!loading ? name : 'Loading'}
     </button>
   );
 }

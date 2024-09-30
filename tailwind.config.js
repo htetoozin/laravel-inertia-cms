@@ -16,7 +16,7 @@ export default {
         }
       },
       fontFamily: {
-        sans: ['"Cerebri Sans"', ...defaultTheme.fontFamily.sans]
+        sans: ['Roboto, "sans-serif"', ...defaultTheme.fontFamily.sans]
       },
       maxWidth: {
         380: '380px'
