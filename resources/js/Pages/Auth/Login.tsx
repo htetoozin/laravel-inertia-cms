@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Head } from '@inertiajs/react';
 import { useForm } from '@inertiajs/react';
 import Logo from '@/Components/Logo/Logo';
@@ -6,6 +6,7 @@ import SubmitButton from '@/Components/Button/SubmitButton';
 import TextInput from '@/Components/Form/TextInput';
 import FieldGroup from '@/Components/Form/FieldGroup';
 import { CheckboxInput } from '@/Components/Form/CheckboxInput';
+import InputPassword from '@/Components/Form/InputPassword';
 
 export default function LoginPage() {
   const { data, setData, errors, post, processing } = useForm({
@@ -14,11 +15,14 @@ export default function LoginPage() {
     remember: true
   });
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setData('password', e.target.value);
+  };
 
-    post(route('login.store'));
-  }
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(data, 'data');
+  };
 
   return (
     <div className="flex items-center justify-center min-h-screen p-6 bg-indigo-600">
@@ -55,18 +59,11 @@ export default function LoginPage() {
                 />
               </FieldGroup>
 
-              <FieldGroup
-                label="Password"
-                name="password"
+              <InputPassword
+                handleChange={handlePasswordChange}
+                value={data.password}
                 error={errors.password}
-              >
-                <TextInput
-                  type="password"
-                  error={errors.password}
-                  value={data.password}
-                  onChange={e => setData('password', e.target.value)}
-                />
-              </FieldGroup>
+              />
 
               <FieldGroup>
                 <CheckboxInput

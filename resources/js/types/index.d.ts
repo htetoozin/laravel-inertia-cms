@@ -1,5 +1,12 @@
 import { Config } from 'ziggy-js';
 
+export interface InputPasswordProps {
+  label?: string;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  error?: string;
+  [key: string]: any;
+}
+
 export interface User {
   id: number;
   name: string;
