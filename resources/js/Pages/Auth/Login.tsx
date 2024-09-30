@@ -21,20 +21,28 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen p-6 bg-indigo-900">
+    <div className="flex items-center justify-center min-h-screen p-6 bg-indigo-600">
       <Head title="Login" />
+      <div className="hidden lg:flex items-center justify-center h-full  mt-[100px] mr-[200px]">
+        <img src="/assets/login.png" alt="Login" className="max-w-380" />
+      </div>
 
       <div className="w-full max-w-md">
-        <Logo
-          className="block w-full max-w-xs mx-auto text-white fill-current"
-          height={50}
-        />
+        <div className="flex items-center justify-center">
+          <Logo
+            className="block w-full max-w-xs mx-auto text-white fill-current"
+            height={50}
+          />
+        </div>
+
         <form
           onSubmit={handleSubmit}
           className="mt-8 overflow-hidden bg-white rounded-lg shadow-xl"
         >
           <div className="px-10 py-12">
-            <h1 className="text-3xl font-bold text-center">Welcome Back!</h1>
+            <h2 className="text-3xl font-bold text-center text-gray-600 hover:text-gray-700">
+              Hi, Welcome Back!
+            </h2>
             <div className="w-24 mx-auto mt-6 border-b-2" />
             <div className="grid gap-6">
               <FieldGroup label="Email" name="email" error={errors.email}>
@@ -71,16 +79,14 @@ export default function LoginPage() {
               </FieldGroup>
             </div>
           </div>
-          <div className="flex items-center justify-between px-10 py-4 bg-gray-100 border-t border-gray-200">
-            <a className="hover:underline" tabIndex={-1} href="#reset-password">
-              Forgot password?
-            </a>
+
+          <div className="flex items-center justify-center px-10 py-4 bg-gray-100 border-t border-gray-200 w-full">
             <LoadingButton
               type="submit"
               loading={processing}
-              className="btn-indigo"
+              className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded shadow-md shadow-purple-600/50 w-full justify-center"
             >
-              Login
+              Sign In
             </LoadingButton>
           </div>
         </form>
