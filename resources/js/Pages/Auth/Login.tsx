@@ -11,8 +11,7 @@ import InputPassword from '@/Components/Form/InputPassword';
 export default function LoginPage() {
   const { data, setData, errors, post, processing } = useForm({
     email: 'johndoe@example.com',
-    password: 'secret',
-    remember: true
+    password: 'password'
   });
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,6 +21,7 @@ export default function LoginPage() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(data, 'data');
+    post(route('login.store'));
   };
 
   return (
@@ -65,7 +65,7 @@ export default function LoginPage() {
                 error={errors.password}
               />
 
-              <FieldGroup>
+              {/* <FieldGroup>
                 <CheckboxInput
                   label="Remember Me"
                   name="remember"
@@ -73,7 +73,7 @@ export default function LoginPage() {
                   checked={data.remember}
                   onChange={e => setData('remember', e.target.checked)}
                 />
-              </FieldGroup>
+              </FieldGroup> */}
             </div>
           </div>
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Auth;
 
+use App\Models\User;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
@@ -40,12 +41,22 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
-            RateLimiter::hit($this->throttleKey());
+        $credentials = $this->only('email', 'password');
 
-            throw ValidationException::withMessages([
-                'email' => __('auth.failed'),
-            ]);
+        $user = User::where('email', $credentials['email'])->first();
+
+        if (!$user) {
+            $this->throwMessage('User not found.');
+        }
+
+
+        if (!User::where('email', $credentials['email'])->active()->first()) {
+            $this->throwMessage('User not active.');
+        }
+
+
+        if (! Auth::attempt($credentials)) {
+            $this->throwMessage(__('auth.failed'));
         }
 
         RateLimiter::clear($this->throttleKey());
@@ -80,6 +91,15 @@ class LoginRequest extends FormRequest
      */
     public function throttleKey(): string
     {
-        return Str::lower($this->input('email')).'|'.$this->ip();
+        return Str::lower($this->input('email')) . '|' . $this->ip();
+    }
+
+    private function throwMessage($message)
+    {
+        RateLimiter::hit($this->throttleKey());
+
+        throw ValidationException::withMessages([
+            'email' => $message
+        ]);
     }
 }
